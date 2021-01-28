@@ -1,0 +1,7 @@
+C:\Users\lenovo\Desktop\2021\Juegos\001 Gato\bin\Debug\001 Gato.exe.config
+C:\Users\lenovo\Desktop\2021\Juegos\001 Gato\bin\Debug\001 Gato.exe
+C:\Users\lenovo\Desktop\2021\Juegos\001 Gato\bin\Debug\001 Gato.pdb
+C:\Users\lenovo\Desktop\2021\Juegos\001 Gato\obj\Debug\001 Gato.csprojAssemblyReference.cache
+C:\Users\lenovo\Desktop\2021\Juegos\001 Gato\obj\Debug\001 Gato.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Desktop\2021\Juegos\001 Gato\obj\Debug\001 Gato.exe
+C:\Users\lenovo\Desktop\2021\Juegos\001 Gato\obj\Debug\001 Gato.pdb
