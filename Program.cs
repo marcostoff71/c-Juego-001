@@ -10,6 +10,7 @@ namespace _001_Gato
     {
         static void Main(string[] args)
         {
+            
             int opcion;
             do
             {

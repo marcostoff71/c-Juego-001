@@ -19,7 +19,8 @@ namespace _001_Gato
             {
                 Console.Write(mensaje);
                 valor = char.TryParse(Console.ReadLine().ToLower().Trim(), out regresar);
-            } while (!valor);
+            } while (!valor||regresar==' ');
+
             return regresar;
         }
         public void Iniciar()
@@ -51,12 +52,12 @@ namespace _001_Gato
                     do
                     {
                         ingresado = validaChar("Inserta una letra: ");//comprobamos el caracterer ingresado y lo validamos
+                        
+                    } while (ingresado==' '||!char.IsLetter(ingresado));//si es vacio repetimos 
 
-                    } while (ingresado==' ');//si es vacio repetimos 
-
-                    intentos++;//aumentamos en 1 los intentos
                     int aux = 0;//nos ayudara para procesos
-                    for(int i = 0; i < palabraEncontrar.Length; i++)//recorramos hasta la longitud de la palabra seleccionada
+                    intentos++;//aumentamos en 1 los intentos
+                    for (int i = 0; i < palabraEncontrar.Length; i++)//recorramos hasta la longitud de la palabra seleccionada
                     {
                         if (ingresado == palabraEspacios[i])//si ya existe una tecla ingresado le hacemos saber que ya ha ingresado ese caracter
                         {
@@ -66,20 +67,20 @@ namespace _001_Gato
                                 Console.WriteLine("letra: {0} anteriormente ingresada", ingresado);//mostramos un mensaje en caso de que caracteres ya ha sido puesto anteriormente
                                 Console.WriteLine("Presione una letra para continuar");
                                 Console.ReadKey();
+                                break;
                             }
-
-                           
                         }
                         else
                         {
-
                             if (ingresado == palabraEncontrar[i])//si el caracter ingresado es igual a letra de la palabra seleccionada 
                                 //le aginamos el indice ejemplo
                                 //_a_ _ _
                             {
                                 if (i == 0)
                                 {
-                                    palabraEspacios[i] = char.Parse(ingresado.ToString().ToUpper());
+                                    //palabraEspacios[i] = char.Parse(ingresado.ToString().ToUpper());
+                                    palabraEspacios[i] = char.ToUpper(ingresado);
+                                    
                                     letraCorrectas++;//aumnetamos la letra correcta para verificar si ya completo la palabra
                                     aux++;
                                 }
@@ -89,19 +90,13 @@ namespace _001_Gato
                                     letraCorrectas++;//aumnetamos la letra correcta para verificar si ya completo la palabra
                                     aux++;
                                 }
-                                
                             }
                         }
                     }
-                    if (aux > 1)
+                    if (aux > 0)
                     {
                         intentos--;
                     }
-                    else if(aux==1)
-                    {
-                        intentos--;
-                    }
-
                     Console.Clear();
                 } while (intentos < 9&&letraCorrectas<palabraEncontrar.Length);
                 
@@ -111,7 +106,10 @@ namespace _001_Gato
                     espacios(palabraEspacios);
                     Console.WriteLine("Has ganado la palabra es: {0}",palabraEncontrar.Substring(0,1).ToUpper()+palabraEncontrar.Substring(1));
                     salir = Nuevamente();
-
+                    if (!salir)
+                    {
+                        Console.Clear();
+                    }
                 }
                 else
                 {
@@ -119,11 +117,12 @@ namespace _001_Gato
                     espacios(palabraEspacios);
                     Console.WriteLine("Has perdido la palabra era: {0}", palabraEncontrar.Substring(0, 1).ToUpper() + palabraEncontrar.Substring(1));
                     salir = Nuevamente();
+                    if (!salir)
+                    {
+                        Console.Clear();
+                    }
                 }
-
-
-            } while (salir != true);
-
+            } while (salir == false);
         }
         public void mensajeIntentos(int intentos)
         {
@@ -154,7 +153,7 @@ namespace _001_Gato
             string palabra="";
             do
             {
-                Console.Write("\nDeseas jugar de nuevo (S/N)");
+                Console.Write("\nDeseas jugar de nuevo (S/N): ");
                 palabra = Console.ReadLine().Trim().ToUpper();
             } while (palabra != "S" && palabra != "N");
 
@@ -194,10 +193,6 @@ namespace _001_Gato
             if (intentos >= 5) pantalla[4, 3] = '|';
             if (intentos >= 6) pantalla[5, 2] = '/';
             if (intentos >= 7) pantalla[5, 4] = 'l';
-            
-
-
-
 
             for (int i = 0; i < 6; i++)pantalla[i, 0] = '|';
             for(int i = 0; i < 5; i++)pantalla[0, i] = '_';
@@ -222,10 +217,10 @@ namespace _001_Gato
 
             string[] palabras = new string[] {"mesa","puerta","casa","peluche","sillon","gato","perro","oso","telefono","calabaza","comida","fruta","galleta","arroz","bosque","conejo"};
 
-            string palabra = palabras[rdn.Next(palabras.Length)];
+            string palabra = palabras[rdn.Next(palabras.Length-1)];
 
             return palabra;
-            //return "calabaza";
+            //return "calabazacomo estas bien gracias y tu";
         }
     }
 }
